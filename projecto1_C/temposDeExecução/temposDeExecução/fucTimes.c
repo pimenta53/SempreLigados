@@ -1,0 +1,391 @@
+void tempo(){
+/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+/*--------------------------------*/
+/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+/*--------------------------------*/
+		CODIGO
+/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"teste a ser efectuado ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+/*--------------------------------*/
+}
+
+
+int inserir_user(long long *IdUsers,char *nome,char *cidade,char *estado_civil,char *email,long long nif) {
+	
+	/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+	/*--------------------------------*/
+	/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+	/*--------------------------------*/
+	Perfil *p=malloc(sizeof(Perfil));
+
+	if (p==NULL) {
+		return mensagem_de_erro(E_NO_NIF);
+	}
+	
+	strcpy(p->nome,nome);
+	strcpy(p->cidade,cidade);
+	strcpy(p->estado_civil,estado_civil);
+	strcpy(p->email,email);
+	p->nif=nif;
+	p->id = *IdUsers;
+	p->apagado=0;
+
+	saveToHash(F_hash_nif(nif),F_hash_nome(nome),p,IdUsers);
+	/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"inserir user ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+	/*--------------------------------*/ 
+
+return 0;
+}
+
+int carregar_bd(char *input, long long *id) {
+
+        FILE *fp = fopen(input,"rb");
+        long long id_aux;
+        int j=0;
+        int valid=1;
+		/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+		/*----------------------------------*/
+        if (fp==NULL) {
+			return mensagem_de_erro(E_OPEN_FILE);
+		}
+       
+        limpa_hash(id);
+        /*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+		/*--------------------------------*/
+        fread(&id_aux,sizeof(long long),1,fp);
+        while (j<id_aux && valid) {
+				fp=ler_user_ficheiro(fp,&valid,id);
+                j++;
+		}
+		/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"carregar base de dados->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+		/*--------------------------------*/
+		
+		if (!valid) {
+			limpa_hash(id);
+			return 0;
+		}
+        fclose(fp);
+        return 1;
+}
+
+int findByName(char *name){
+
+	long long indice=F_hash_nome(name);
+	User_h *aux;
+	int confirm=0;
+	int row,col;
+	/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+	/*--------------------------------*/
+	getmaxyx(stdscr,row,col);
+		
+	aux=hash_nome[indice];
+	if(!aux){
+		clear();
+		mvprintw(row/2,(col-48)/2,"Utilizador inexistente ou com conta desactivada");
+		getch();
+	}
+	/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+	/*--------------------------------*/
+	while(aux && !confirm){
+		if((strcmp(aux->user->nome,name)==0) && aux->user->apagado==0){
+			clear();
+			print_user(aux->user);
+			confirm=response();
+		}
+		aux=aux->next;
+	}
+	/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"pesquisa nome ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+	/*--------------------------------*/ 
+	if(!confirm ){
+		clear();
+		mvprintw(row/2,(col-48)/2,"Utilizador inexistente ou com conta desactivada");
+		getch();
+	}
+
+return 0;	
+}
+
+int pesquisa_nif(){
+		
+		long long nif;
+		
+		/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+		/*--------------------------------*/
+		
+		nif=ler_nif(); 
+		/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+		/*--------------------------------*/
+		Perfil *user=findByNif(nif);
+		/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"pesquisar por nif ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+		/*--------------------------------*/
+		if(user && user->apagado==0){
+			print_user(user);
+			getch();
+		}
+		else{
+			clear();
+			printw("utilizador não existe ou foi apagado");
+			getch();
+		}
+
+return 0;
+}
+
+int grava_mensagem(long long nif2,long long nif1,char *mensagem,Lista_destinatario *ld, long long userID){
+	Perfil *user1=findByNif(nif1);
+	Perfil *user2=findByNif(nif2);
+	long long id1;
+	long long id2;
+	Destinatario *dest=NULL;
+	
+	/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+	/*--------------------------------*/
+	/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+	/*--------------------------------*/
+	if(!user1 || !user2){
+		return mensagem_de_erro(E_NO_NIF);
+		}
+		
+	if (nif1==nif2) {
+		return mensagem_de_erro(E_NO_NIF);
+	}
+	
+	Mensagens *mensagem1=malloc(sizeof(Mensagens));
+	mensagem1->mensagem=malloc(MAXMSG*sizeof(char));
+	strcpy(mensagem1->mensagem,mensagem);
+	mensagem1->next=NULL;
+	
+	id1=user2->id;
+	id2=user1->id;
+	if (id2>ld->dimensao) act_tam_list_msg(userID,ld);
+	
+	if (!(ld->L_mensagens[id2])) {
+		dest=procura(id2);
+		if (dest) ld->L_mensagens[id2]=dest;
+		else {
+			dest = malloc(sizeof(Destinatario));
+			dest->total_mensagens = 0;
+			dest->remetentes = NULL;
+			ld->L_mensagens[id2]=dest;
+		}
+	}
+	
+	(ld->L_mensagens[id2]->total_mensagens)++;
+
+	act_mais_popular (ld->L_mensagens[id2]->total_mensagens, user1->nif, ld);
+	
+	
+	Remetente *aux_remetente=ld->L_mensagens[id2]->remetentes;
+	Remetente *aux_ant=ld->L_mensagens[id2]->remetentes;
+	
+	while ((ld->L_mensagens[id2]->remetentes)!=NULL) {
+		aux_ant=ld->L_mensagens[id2]->remetentes;
+		if ((ld->L_mensagens[id2]->remetentes->id) == id1) break;
+		ld->L_mensagens[id2]->remetentes = ld->L_mensagens[id2]->remetentes->next;
+	}
+	
+	
+	if (ld->L_mensagens[id2]->remetentes==NULL) {
+		Remetente *rem = malloc(sizeof(Remetente));
+		rem->id=id1;
+		rem->n_mensagens=1;
+		rem->nif = nif2;
+		rem->msg = mensagem1;
+		rem->next=NULL;
+		ld->L_mensagens[id2]->remetentes = aux_ant;
+		if ((ld->L_mensagens[id2]->remetentes)==NULL) ld->L_mensagens[id2]->remetentes = rem;
+		else  {
+			ld->L_mensagens[id2]->remetentes->next = rem;
+			ld->L_mensagens[id2]->remetentes=aux_remetente;
+		}
+		
+		/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"mensagens ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+		/*--------------------------------*/
+
+		return 1;
+	}
+		
+	if ((ld->L_mensagens[id2]->remetentes->n_mensagens)>19) {
+		Mensagens *m_aux = ld->L_mensagens[id2]->remetentes->msg;
+		ld->L_mensagens[id2]->remetentes->msg = ld->L_mensagens[id2]->remetentes->msg->next;
+		free(m_aux);
+		(ld->L_mensagens[id2]->remetentes->n_mensagens)--;
+	}
+	
+	Mensagens *auxiliar = ld->L_mensagens[id2]->remetentes->msg;
+	
+	while (ld->L_mensagens[id2]->remetentes->msg->next!=NULL) {
+		ld->L_mensagens[id2]->remetentes->msg=ld->L_mensagens[id2]->remetentes->msg->next;
+	}
+	
+	ld->L_mensagens[id2]->remetentes->msg->next = mensagem1;
+	(ld->L_mensagens[id2]->remetentes->n_mensagens)++;
+	ld->L_mensagens[id2]->remetentes->msg=auxiliar;
+	ld->L_mensagens[id2]->remetentes=aux_remetente;
+	
+		/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"mensagens ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+		/*--------------------------------*/
+
+	return 1;
+}
+
+void imprime(){
+	
+	int i;User_h *lista;
+	/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+	/*--------------------------------*/
+	
+	/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+	/*--------------------------------*/
+	for(i=0;i<MAXNODES;i++) {
+		lista=hash_nif[i];
+		while (lista) {
+			printf(" ID: %lld",lista->user->id);
+			printf(" NOME:%s",lista->user->nome);
+			printf(" NIF:%lld",lista->user->nif);
+			printf(" MORADA:%s",lista->user->cidade);
+			printf(" ESTADO CIVIL:%s",lista->user->estado_civil);
+			printf(" EMAIL:%s",lista->user->email);
+		lista=lista->next;
+        }
+	}
+	/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"imprimir ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+	/*--------------------------------*/
+
+}
+
+
+void percorre(){
+	
+	int i;User_h *lista;
+	/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+	/*--------------------------------*/
+	
+	/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+	/*--------------------------------*/
+	for(i=0;i<MAXNODES;i++) {
+		lista=hash_nif[i];
+		while (lista) {
+		lista=lista->next;
+        }
+	}
+	/*------------tempo fim-----------*/
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=(t2.tv_usec)-(t1.tv_usec);
+        if(usec<0) usec+=1000000;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"percorre ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+	/*--------------------------------*/
+
+}
+
+void tempoN(){
+/*-----------Declaração-------------*/
+		struct timeval t1,t2;
+		long sec;
+		long usec;
+/*--------------------------------*/
+/*------------tempo inicio----------*/
+        gettimeofday(&t1,NULL);
+		for(i=0;i<N;i++){
+/*--------------------------------*/
+		CODIGO
+/*------------tempo fim-----------*/
+	}
+        gettimeofday(&t2,NULL);
+        sec=(t2.tv_sec)-(t1.tv_sec);
+        usec=usec/N;
+        FILE *pT = fopen("times.txt","a+");
+        fprintf(pT,"teste a ser efectuado ->%ld s %ld us \n",sec,usec);
+        fclose(pT);
+/*--------------------------------*/
+}

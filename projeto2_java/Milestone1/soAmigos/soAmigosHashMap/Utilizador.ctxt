@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Utilizador()
+comment1.params=nome\ nif\ morada
+comment1.target=Utilizador(String,\ long,\ String)
+comment10.params=o
+comment10.target=boolean\ equals(Object)
+comment11.target=Utilizador\ clone()
+comment2.params=ut
+comment2.target=Utilizador(Utilizador)
+comment3.target=String\ getNome()
+comment4.target=long\ getNif()
+comment5.target=String\ getMorada()
+comment6.params=nome
+comment6.target=void\ setNome(String)
+comment7.params=nif
+comment7.target=void\ setNif(long)
+comment8.params=morada
+comment8.target=void\ setMorada(String)
+comment9.target=String\ toString()
+numComments=12

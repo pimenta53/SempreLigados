@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Mensagem()
+comment1.params=msg
+comment1.target=Mensagem(String)
+comment2.params=msg
+comment2.target=Mensagem(Mensagem)
+comment3.target=String\ getMsg()
+comment4.params=msg
+comment4.target=void\ setMsg(String)
+comment5.target=String\ toString()
+comment6.params=m
+comment6.target=boolean\ equals(Mensagem)
+comment7.target=Mensagem\ clone()
+numComments=8

@@ -1,0 +1,292 @@
+			18000 
+
+mensagem ->0 s 81 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 77 us 
+mensagem ->0 s 5 us 
+mensagem ->0 s 5 us 
+mensagem ->0 s 81 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 83 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 5 us 
+mensagem ->0 s 84 us
+
+media -> 33.36 us
+
+percorre Imprime ->5 s 315871 us 
+percorre Imprime ->5 s 939609 us
+percorre Imprime ->6 s 381090 us
+percorre Imprime ->5 s 815020 us
+percorre Imprime ->5 s 833880 us
+
+media -> 658094 us
+
+inserir ->0 s 6 us 
+inserir ->0 s 5 us  
+inserir ->0 s 4 us  
+inserir ->0 s 9 us  
+inserir ->0 s 4 us 
+
+media -> 5.6 us
+ 
+percorrera ->0 s 1186 us 
+percorrera ->0 s 1201 us 
+percorrera ->0 s 1311 us 
+percorrera ->0 s 1340 us 
+percorrera ->0 s 1316 us 
+
+
+media -> 1270.8 us
+
+procura por nif->us 2
+procura por nif->us 2
+procura por nif->us 3
+procura por nif->us 2
+procura por nif->us 1
+procura por nif->us 2
+
+media -> 2 us
+
+carregar ->0 s 27861 us  
+carregar ->0 s 27680 us  
+carregar ->0 s 27232 us  
+carregar ->0 s 27697 us 
+carregar ->0 s 28256 us 
+
+media -> 27745.2 us
+
+procura por nome->us 4
+procura por nome->us 4
+procura por nome->us 5
+procura por nome->us 4
+procura por nome->us 2
+procura por nome->us 3
+
+media -> 3.67 us
+
+			15000
+
+mensagem ->0 s 91 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 3 us 
+mensagem ->0 s 76 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 101 us  
+mensagem ->0 s 94 us 
+mensagem ->0 s 3 us 
+mensagem ->0 s 85 us 
+
+media -> 46.5 us
+
+
+percorre Imprime ->3 s 387234 us
+percorre Imprime ->3 s 391446 us
+percorre Imprime ->2 s 518591 us
+percorre Imprime ->3 s 480308 us
+percorre Imprime ->2 s 353883 us
+percorre Imprime ->2 s 413125 us
+
+inserir ->0 s 10 us  
+inserir ->0 s 4 us  
+inserir ->0 s 4 us  
+inserir ->0 s 4 us 
+inserir ->0 s 4 us 
+
+media -> 5.2us
+
+percorrera ->0 s 712 us 
+percorrera ->0 s 1012 us
+percorrera ->0 s 737 us
+percorrera ->0 s 779 us
+percorrera ->0 s 777 us
+percorrera ->0 s 915 us
+
+media -> 822 us
+
+carregar ->0 s 21942 us  
+carregar ->0 s 22190 us 
+carregar ->0 s 22052 us 
+carregar ->0 s 21806 us 
+carregar ->0 s 21855 us 
+carregar ->0 s 21767 us 
+
+media -> 21935.3 us
+
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+nif ->0 s 3 us 
+nif ->0 s 2 us 
+nif ->0 s 3 us 
+nif ->0 s 1 us 
+
+media -> 2 us
+
+nome ->0 s 3 us 
+nome ->0 s 4 us 
+nome ->0 s 3 us 
+nome ->0 s 2 us 
+nome ->0 s 5 us 
+nome ->0 s 4 us 
+nome ->0 s 6 us 
+
+media -> 3.86 us
+			10000
+
+mensagem ->0 s 71 us
+mensagem ->0 s 3 us
+mensagem ->0 s 82 us 
+mensagem ->0 s 52 us
+mensagem ->0 s 4 us
+mensagem ->0 s 4 us
+
+media -> 36 us 
+
+
+percorre Imprime ->2 s 696811 us
+percorre Imprime ->2 s 619390 us 
+percorre Imprime ->2 s 591852 us
+percorre Imprime ->2 s 680528 us
+percorre Imprime ->2 s 651459 us
+
+media -> 2s 648008 us
+
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+nif ->0 s 3 us 
+nif ->0 s 1 us 
+nif ->0 s 3 us 
+nif ->0 s 1 us 
+
+media -> 1.78 us
+
+nome ->0 s 3 us 
+nome ->0 s 3 us 
+nome ->0 s 4 us 
+nome ->0 s 3 us 
+nome ->0 s 2 us 
+nome ->0 s 5 us 
+nome ->0 s 2 us 
+nome ->0 s 4 us 
+nome ->0 s 2 us 
+
+media -> 3.11 us
+
+carregar ->0 s 14844 us
+carregar ->0 s 16359 us
+carregar ->0 s 14529 us
+carregar ->0 s 14545 us
+carregar ->0 s 14289 us
+
+media -> 12007.4 us
+
+percorrera ->0 s 547 us
+percorrera ->0 s 539 us
+percorrera ->0 s 473 us
+percorrera ->0 s 453 us
+percorrera ->0 s 509 us
+percorrera ->0 s 451 us
+
+media -> 495.33 us
+
+inserir ->0 s 5 us 
+inserir ->0 s 4 us 
+inserir ->0 s 4 us
+inserir ->0 s 12 us
+
+media -> 6.25 us
+
+			5000
+
+mensagem ->0 s 90 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 4 us 
+mensagem ->0 s 76 us 
+mensagem ->0 s 4 us 
+
+media -> 35.6us
+
+carregar ->0 s 7321 us
+carregar ->0 s 7223 us
+carregar ->0 s 7174 us
+carregar ->0 s 7209 us
+carregar ->0 s 7468 us
+carregar ->0 s 7209 us
+carregar ->0 s 7617 us
+carregar ->0 s 7161 us
+carregar ->0 s 7240 us
+
+media -> 7291.3 us
+
+percorrera ->0 s 298 us
+percorrera ->0 s 284 us
+percorrera ->0 s 259 us
+percorrera ->0 s 281 us
+percorrera ->0 s 229 us
+percorrera ->0 s 331 us
+percorrera ->0 s 245 us
+percorrera ->0 s 318 us
+percorrera ->0 s 244 us
+percorrera ->0 s 384 us
+
+media ->287.3 us
+
+inserir ->0 s 10 us
+inserir ->0 s 4 us
+inserir ->0 s 3 us
+inserir ->0 s 4 us
+inserir ->0 s 4 us
+inserir ->0 s 3 us
+
+media -> 4.67 us
+
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 2 us 
+nif ->0 s 1 us 
+
+media -> 1.8 us
+
+nome ->0 s 3 us 
+nome ->0 s 4 us 
+nome ->0 s 2 us 
+nome ->0 s 1 us 
+nome ->0 s 3 us 
+nome ->0 s 3 us 
+nome ->0 s 2 us 
+nome ->0 s 2 us 
+nome ->0 s 4 us 
+nome ->0 s 2 us 
+nome ->0 s 2 us 
+nome ->0 s 3 us 
+nome ->0 s 2 us 
+nome ->0 s 2 us 
+nome ->0 s 2 us 
+
+media -> 2.467 us
+
+percorre Imprime ->1 s 812640 us 
+percorre Imprime ->1 s 751630 us
+percorre Imprime ->1 s 755068 us
+percorre Imprime ->1 s 847872 us
+percorre Imprime ->1 s 785037 us
+percorre Imprime ->1 s 789064 us
+
+media -> 1 s 790218.5 us

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Amigos()
+comment1.params=amg
+comment1.target=Amigos(TreeSet<Long>)
+comment2.params=amg
+comment2.target=Amigos(Amigos)
+comment3.target=List<Long>\ getAmigos()
+comment4.params=nifAmigo
+comment4.target=void\ addAmigo(long)
+comment5.params=nifAmigo
+comment5.target=void\ removerAmigo(long)
+comment6.target=int\ getNumAmigos()
+comment7.target=Amigos\ clone()
+comment8.target=String\ toString()
+comment9.params=o
+comment9.target=boolean\ equals(Object)
+numComments=10

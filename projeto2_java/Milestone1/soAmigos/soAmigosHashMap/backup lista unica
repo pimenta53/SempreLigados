@@ -1,0 +1,115 @@
+    
+    /*public void inserirPerfil(String nome, long nif, String morada) {
+     PerfilArrList novo = new PerfilArrList(new Utilizador(nome,nif,morada));
+        if (baseDados.contains(novo) == false)
+            
+    }
+           
+   public void removerPerfil(String nifU) {
+       long nif = Long.parseLong(nifU);
+       PerfilArrList aRemover = new PerfilArrList(new Utilizador("",nif,""));
+       if (baseDados.contains(aRemover)) {
+           baseDados.remove(baseDados.indexOf(aRemover));
+        }
+    }
+    
+    public void addAmigo(String nifU, String nifA) {
+        long nifUtiliz = Long.parseLong(nifU);
+        long nifAmig = Long.parseLong(nifA);
+        int index;
+        if (baseDados.contains(new PerfilArrList(new Utilizador("",nifAmig,"")))) {
+            index = baseDados.indexOf(new PerfilArrList(new Utilizador("",nifUtiliz,"")));
+            if (index != -1)
+                baseDados.get(index).addAmigo(nifAmig);
+        }
+    }
+    
+    public void removerAmigo(Long nifUtiliz, Long nifAmig) {
+        int index = baseDados.indexOf(new PerfilArrList(new Utilizador("",nifUtiliz,"")));
+            if (index != -1)
+                baseDados.get(index).removerAmigo(nifAmig);
+    }
+        
+    public void enviarMensagem(String msg, Long nifDest, Long nifRem) {
+        int index = baseDados.indexOf(new PerfilArrList(new Utilizador("",nifDest,"")));
+        if (index != -1)
+            baseDados.get(index).addMensagem(nifRem,msg);
+    }
+    
+    public void apagarMensagem(String msg, Long nifDest) {
+        int index = baseDados.indexOf(new PerfilArrList(new Utilizador("",nifDest,"")));
+        if (index != -1)
+            baseDados.get(index).removeMsg(msg);
+    }
+    
+    public PerfilArrList procuraNif(long nif) {
+        int index = baseDados.indexOf(new PerfilArrList(new Utilizador("",nif,"")));
+        if (index != -1) {
+            return baseDados.get(index).clone();
+        }
+        return null;
+    }
+    
+    public PerfilArrList procuraNome(String nome) {
+        PerfilArrList act;
+        boolean found = false;
+        Iterator<PerfilArrList> it = baseDados.iterator();
+        while (it.hasNext() && !found) {
+            act = it.next();
+            if (act.getUtilizador().getNome().compareTo(nome) == 0)
+                return act.clone();
+       }
+       return null;
+                
+    }
+    
+    public void carregarBd() {
+        try {
+
+            String linha = ""; 
+            StringTokenizer str;
+            String nifStr, nome, endereco;
+            long nif;
+            int cont = 0;
+
+            //abrir para leitura o ficheiro clientes.csv
+            BufferedReader ficheiro = new BufferedReader(new FileReader("clientes5.csv"));
+                
+            //ler primeiro
+            linha = ficheiro.readLine(); //ler uma linha
+            cont++;
+            str = new StringTokenizer(linha,";"); 
+            nifStr = str.nextToken();
+            nifStr=nifStr.substring(1);
+            nome = str.nextToken();
+            endereco = str.nextToken();
+            nif = Long.parseLong(nifStr);
+            inserirPerfil(nome,nif,endereco);
+                
+            while (ficheiro.ready()) { //enquanto não chegar ao fim do ficheiro
+                linha = ficheiro.readLine(); //ler uma linha
+                cont++;
+
+                str = new StringTokenizer(linha,";"); 
+                nif = Long.parseLong(str.nextToken());
+                nome = str.nextToken();
+                endereco = str.nextToken();
+                /*if ((cont%1200) == 0)
+                    System.out.println(inserirPerfil(nome,nif,endereco));
+                else
+                    inserirPerfil(nome,nif,endereco);
+                
+                    
+                //System.out.println("Cliente "+ cont + " --> " + "NIF: "+ nif + " NOME: " + nome + " ENDERECO: "+ endereco);
+            }
+            ficheiro.close();
+        } catch (IOException e) {System.out.println(e.getMessage());}
+    }
+    
+    /*public void ordenaPorNif() {
+        Collections.sort(baseDados, new NifComparator());
+    }
+    
+    public void ordenaPorNome() {
+        Collections.sort(baseDados, new NomeComparator());
+    }*/
